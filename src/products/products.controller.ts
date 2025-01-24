@@ -1,4 +1,4 @@
-import { Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 
 interface datos { id: string, size: string };
 @Controller('products')
@@ -45,9 +45,10 @@ export class ProductsController {
     findIDSize(@Param() parametros: datos): string {
         return `Productos obtenidos mediante parámetro ${parametros.size}`
     }
-    @Post()
-    insertarProduct(): string {
-        return "Producto insertado";
+    //Insertar/Crear datos en BODY
+    @Post( )
+    insertarProduct(@Body() datos:any): string {
+        return `Producto ${datos.articulo} con precio ${datos.precio} se ha insertado correctamente`;
     }
     @Put()
     actualizarProduct(): string {
