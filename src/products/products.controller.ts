@@ -28,7 +28,7 @@ export class ProductsController {
         return `Productos obtenidos mediante parámetro ${parametros.id}`
     }
     @Get(':id/:size')
-    findIDSize(@Param() tipo:string, talla:string) :string{
+    findIDSize(@Param('id') tipo:string,@Param('size') talla:string) :string{
         return `Productos obtenidos mediante parámetro ${talla}`
     }
     @Post()
