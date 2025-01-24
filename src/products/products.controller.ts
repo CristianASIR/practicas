@@ -47,8 +47,8 @@ export class ProductsController {
     }
     //Insertar/Crear datos en BODY
     @Post( )
-    insertarProduct(@Body() datos:any): string {
-        return `Producto ${datos.articulo} con precio ${datos.precio} se ha insertado correctamente`;
+    insertarProduct(@Body('articulo') articulo:string, @Body('precio') precio:number): string {
+        return `Producto ${articulo} con precio ${precio} se ha insertado correctamente`;
     }
     @Put()
     actualizarProduct(): string {
