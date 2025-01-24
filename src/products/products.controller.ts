@@ -1,6 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 
 interface datos { id: string, size: string };
+type Product={articulo:string,precio:number,descripcion:string};
 @Controller('products')
 export class ProductsController {
     // El orden en el que se encuentran estos "Decoradores" influye en la impresión de kas peticiones
@@ -46,9 +47,13 @@ export class ProductsController {
         return `Productos obtenidos mediante parámetro ${parametros.size}`
     }
     //Insertar/Crear datos en BODY
+    // @Post( )
+    // insertarProduct(@Body('articulo') articulo:string, @Body('precio') precio:number): string {
+    //     return `Producto ${articulo} con precio ${precio} se ha insertado correctamente`;
+    // }
     @Post( )
-    insertarProduct(@Body('articulo') articulo:string, @Body('precio') precio:number): string {
-        return `Producto ${articulo} con precio ${precio} se ha insertado correctamente`;
+    insertarProduct(@Body() producto:Product) {
+        return `Producto ${producto.articulo} con precio ${producto.precio} es ${producto.descripcion}`;
     }
     @Put()
     actualizarProduct(): string {
