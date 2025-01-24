@@ -20,14 +20,16 @@ export class ProductsController {
     findHot() {
         return "Productos en caliente"
     }
+
+    //Los parámetros generales se implementan en la última parte de los parámetros
     //Recoge el contenido del parámetro sea cual sea y lo ingresa en la ruta principal como una cadena
     @Get(':id')
     findID(@Param()  parametros :any) :string{
         return `Productos obtenidos mediante parámetro ${parametros.id}`
     }
     @Get(':id/:size')
-    findIDSize(@Param()  parametros :any) :string{
-        return `Productos obtenidos mediante parámetro ${parametros.size}`
+    findIDSize(@Param() tipo:string, talla:string) :string{
+        return `Productos obtenidos mediante parámetro ${talla}`
     }
     @Post()
     insertarProduct(): string {
