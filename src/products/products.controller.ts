@@ -1,5 +1,6 @@
 import { Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 
+interface datos {id:string, size:string};
 @Controller('products')
 export class ProductsController {
     // El orden en el que se encuentran estos "Decoradores" influye en la impresión de kas peticiones
@@ -28,8 +29,8 @@ export class ProductsController {
         return `Productos obtenidos mediante parámetro ${parametros.id}`
     }
     @Get(':id/:size')
-    findIDSize(@Param('id') tipo:string,@Param('size') talla:string) :string{
-        return `Productos obtenidos mediante parámetro ${talla}`
+    findIDSize(@Param() parametros:datos) :string{
+        return `Productos obtenidos mediante parámetro ${parametros.size}`
     }
     @Post()
     insertarProduct(): string {
