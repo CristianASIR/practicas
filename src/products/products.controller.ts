@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put } from '@nestjs/common';
 
 interface datos { id: string, size: string };
-type Product={articulo:string,precio:number,descripcion:string};
+type Product = { articulo: string, precio: number, descripcion: string };
 @Controller('products')
 export class ProductsController {
     // El orden en el que se encuentran estos "Decoradores" influye en la impresión de kas peticiones
@@ -51,15 +51,25 @@ export class ProductsController {
     // insertarProduct(@Body('articulo') articulo:string, @Body('precio') precio:number): string {
     //     return `Producto ${articulo} con precio ${precio} se ha insertado correctamente`;
     // }
-    @Post( )
+    @Post()
     //Generar producto sin estado
     // @HttpCode(HttpStatus.NO_CONTENT)
-    insertarProduct(@Body() producto:Product) {
-        return {
-            status:HttpStatus.OK,
-            message:`${producto.articulo} tiene un precio de ${producto.precio}.`
+    insertarProduct(@Body() producto: Product) {
+        //Crear condicional para insertar productos, en caso de pertenecer a "Ordenata" se inserta
+        if (producto.articulo === 'Ordenata')
+            return {
+                status: HttpStatus.OK,
+                message: `${producto.articulo} tiene un precio de ${producto.precio}.`
+            }
+            //De lo contrario no inserta nada
+        else {
+
+            return {
+                status: HttpStatus.NOT_ACCEPTABLE,
+                message: `Este producto no se ha insertado.`
+            }
         }
-        
+
     }
     @Put()
     actualizarProduct(): string {
