@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put } from '@nestjs/common';
 
 interface datos { id: string, size: string };
 type Product={articulo:string,precio:number,descripcion:string};
@@ -52,8 +52,14 @@ export class ProductsController {
     //     return `Producto ${articulo} con precio ${precio} se ha insertado correctamente`;
     // }
     @Post( )
+    //Generar producto sin estado
+    // @HttpCode(HttpStatus.NO_CONTENT)
     insertarProduct(@Body() producto:Product) {
-        return `Producto ${producto.articulo} con precio ${producto.precio} es ${producto.descripcion}`;
+        return {
+            status:HttpStatus.OK,
+            message:`${producto.articulo} tiene un precio de ${producto.precio}.`
+        }
+        
     }
     @Put()
     actualizarProduct(): string {
