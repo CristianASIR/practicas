@@ -16,6 +16,8 @@ export class ProductsController {
     @Get()
     getHelloInProducts(): string {
         return this.productService.getHelloInProducts();
+        //Desde el navegador intentamos acceder al raíz y comprobamos el resultado. Debe ser el mismo
+        //que en inicio puesto que la salida la hemos transladado al "servicio"
     }
     @Get('primer')
     findprimer(): string {
