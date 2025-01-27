@@ -1,4 +1,6 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Put, Query } from '@nestjs/common';
+import { AppService } from 'src/app.service';
+import { ProductsService } from './products.service';
 
 interface datos { id: string, size: string };
 
@@ -9,10 +11,11 @@ type Product = { articulo: string, precio: number, descripcion: string };
 type id={id:number};
 @Controller('products')
 export class ProductsController {
+    constructor(private readonly productService: ProductsService){}
     // El orden en el que se encuentran estos "Decoradores" influye en la impresión de kas peticiones
     @Get()
     getHelloInProducts(): string {
-        return "Totalidad de productos";
+        return this.productService.getHelloInProducts();
     }
     @Get('primer')
     findprimer(): string {
