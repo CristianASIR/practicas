@@ -71,9 +71,12 @@ export class ProductsController {
         }
 
     }
-    @Put()
-    actualizarProduct(): string {
-        return "Actualizando producto";
+
+    //Actualizar producto dentro de "Body"
+    @Put(':id')//:ID es la parte del decorador que no se va a actualizar
+    //Devolver una cadena indicando que el producto con ID?? necesita actualización de datos.
+    actualizarProduct(@Param()ruta:any,@Body() actualizar:any):string {
+        return `El producto ${actualizar.id} se debe actualizar el precio`;
     }
     @Delete()
     borrarProduct(): string {
