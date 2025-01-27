@@ -1,7 +1,12 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Put } from '@nestjs/common';
 
 interface datos { id: string, size: string };
+
+//Definir "product" en los parámetros que le hemos especificado
 type Product = { articulo: string, precio: number, descripcion: string };
+
+//Convertir cadena en numero
+type id={id:number};
 @Controller('products')
 export class ProductsController {
     // El orden en el que se encuentran estos "Decoradores" influye en la impresión de kas peticiones
@@ -78,8 +83,11 @@ export class ProductsController {
     actualizarProduct(@Param()ruta:any,@Body() actualizar:any):string {
         return `El producto ${actualizar.id} se debe actualizar el precio`;
     }
-    @Delete()
-    borrarProduct(): string {
-        return "Producto eliminado";
+
+    //Eliminar registro si existe
+    @Delete(':id')
+    //Leer producto de la URL
+    borrarProduct(@Param('id',ParseIntPipe) producto:number): string {
+        return `Producto ${producto} eliminado`;
     }
 }
