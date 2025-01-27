@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Put, Query } from '@nestjs/common';
 
 interface datos { id: string, size: string };
 
@@ -22,11 +22,19 @@ export class ProductsController {
     findsegundo(): string {
         return "Segundo decorador";
     }
+
+    //Filtrar búsquedas según los parámetros introducidos
+    @Get('query')
+    buscar(@Query() dato:any) :string{
+        return `Consultas realizadas a ${dato.articulo} con precio ${dato.precio}`;
+        //Comprobaciones: http://localhost:4000/products/query?articulo="raton"&precio=264,50
+    }
     //
     @Get('hot')
     findHot() {
         return "Productos en caliente"
     }
+
     /*
     //Anidar las funciones para que aparezcan dependiendo de su existencia
     @Get(':id?/:size?')
