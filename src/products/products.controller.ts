@@ -14,8 +14,8 @@ export class ProductsController {
     constructor(private readonly productService: ProductsService){}
     // El orden en el que se encuentran estos "Decoradores" influye en la impresión de kas peticiones
     @Get()
-    getHelloInProducts(): string {
-        return this.productService.getHelloInProducts();
+    getProducts(): string {
+        return this.productService.getProducts();
         //Desde el navegador intentamos acceder al raíz y comprobamos el resultado. Debe ser el mismo
         //que en inicio puesto que la salida la hemos transladado al "servicio"
     }
