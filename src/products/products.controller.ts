@@ -17,6 +17,12 @@ export class ProductsController {
     getAllProducts() {
         return this.serviceProduct.getAll();
     }
+
+    //Filtrar busqueda por el parámetro especificado
+    @Get(':id')
+    getByID(@Param('id') dato:number):Products{
+        return this.serviceProduct.getId(dato);
+    }
     @Post()
     createProduct(@Body('articulo') articulo: string,
         @Body('precio', ParseFloatPipe) precio: number): { status: HttpStatus, msg: string } {
@@ -26,5 +32,9 @@ export class ProductsController {
             articulo,
             precio
         });
+    }
+    @Put(':id')
+    actualizarProduct(@Param('id') dato:number,@Body() producto:any){
+        return this.serviceProduct.update(dato,producto);
     }
 }
