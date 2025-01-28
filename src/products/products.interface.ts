@@ -1,4 +1,7 @@
 export interface Products {
     id:number,
     articulo:string,
-    precio:number}
+    precio:number,
+    email:string
+
+}

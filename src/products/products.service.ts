@@ -31,6 +31,7 @@ export class ProductsService {
             id,
             articulo: body.articulo,
             precio: body.precio,
+            email: body.email
         }
         this.products = this.products.map((item: Products) => {
             console.log(item, id, item.id == id);
