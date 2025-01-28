@@ -28,16 +28,16 @@ export class ProductsController {
     }
     //Filtrar busqueda por el parámetro especificado
     @Get(':id')
-    getId(@Param('id',ParseIntPipe) id: number): Products {
+    getId(@Param('id', ParseIntPipe) id: number): Products {
         return this.serviceProduct.findOne(id);
-        }
+    }
     @Post()
-    createProduct(@Body() articulo:ProductsDto): { status: HttpStatus, msg: string } {
+    createProduct(@Body() producto: ProductsDto): { status: HttpStatus, msg: string } {
         return this.serviceProduct.insert({
             //Insertar producto y ID por no tener clave primaria en este momento
             id: this.serviceProduct.getAll().length + 1,
-            articulo.articulo,
-            articulo.precio
+            articulo: producto.articulo,
+            precio: producto.precio
         });
     }
     @Put(':id')
