@@ -17,10 +17,17 @@ export class ProductsController {
     getAllProducts() {
         return this.serviceProduct.getAll();
     }
+    @Get('total')
+    getTotal() {
+        return `El array tiene ${this.serviceProduct.total()} elementos`;
+        //Al ejecutar la petición desde el cliente nos aparece el total de elementos
+        //que tiene el array en su interior
 
+        //http://localhost:4000/products/total
+    }
     //Filtrar busqueda por el parámetro especificado
     @Get(':id')
-    getByID(@Param('id') dato:number):Products{
+    getByID(@Param('id') dato: number): Products {
         return this.serviceProduct.getId(dato);
     }
     @Post()
@@ -34,11 +41,11 @@ export class ProductsController {
         });
     }
     @Put(':id')
-    actualizarProduct(@Param('id') dato:number,@Body() producto:any){
-        return this.serviceProduct.update(dato,producto);
+    actualizarProduct(@Param('id') dato: number, @Body() producto: any) {
+        return this.serviceProduct.update(dato, producto);
     }
     @Delete(':id')
-    borrarProduct(@Param('id') dato:number):string{
+    borrarProduct(@Param('id') dato: number): string {
         return this.serviceProduct.delete(dato);
     }
 }
