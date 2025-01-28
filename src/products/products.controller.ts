@@ -37,4 +37,8 @@ export class ProductsController {
     actualizarProduct(@Param('id') dato:number,@Body() producto:any){
         return this.serviceProduct.update(dato,producto);
     }
+    @Delete(':id')
+    borrarProduct(@Param('id') dato:number):string{
+        return this.serviceProduct.delete(dato);
+    }
 }

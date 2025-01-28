@@ -37,5 +37,9 @@ export class ProductsService {
             return item.id == id ? product : item;
         });
     }
+    delete(id: number){
+        this.products.filter((item: Products) =>item.id != id);
+        return 'Producto eliminado'
+    }
 
 }
