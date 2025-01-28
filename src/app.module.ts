@@ -12,13 +12,16 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     ClientesModule,
     GeneracionesModule,
     TypeOrmModule.forRoot({
-      type:'mysql',
-      host:'localhost',
-      port:3306,
-      username:'root',
-      password:'usuario',
-      database:'apitarea',
+      type: 'mysql',
+      host: process.env.HOST,
+      port: 3306,
+      username: process.env.USERNAME,
+      password: process.env.PASSWORD,
+      database: process.env.DATABASE,
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
+      
+      //Se utiliza la sincronización de los datos cuando estamos en desarrollo
+      //Si esta en producción se mantiene desactivada para no provocar conflicto
       synchronize:true
     })
   ],
