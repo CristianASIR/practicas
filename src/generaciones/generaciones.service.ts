@@ -5,22 +5,22 @@ import { UpdateGeneracioneDto } from './dto/update-generacione.dto';
 @Injectable()
 export class GeneracionesService {
   create(createGeneracioneDto: CreateGeneracioneDto) {
-    return 'This action adds a new generacione';
+    return 'Crear nueva generación';
   }
 
   findAll() {
-    return `This action returns all generaciones`;
+    return `Todas las generaciones`;
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} generacione`;
+    return `ID#${id} de la generación`;
   }
 
   update(id: number, updateGeneracioneDto: UpdateGeneracioneDto) {
-    return `This action updates a #${id} generacione`;
+    return `Actualización de ID#${id} de la generación`;
   }
 
   remove(id: number) {
-    return `This action removes a #${id} generacione`;
+    return `Eliminar #${id} generación`;
   }
 }
