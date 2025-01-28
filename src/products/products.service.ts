@@ -44,11 +44,13 @@ export class ProductsService {
     total(): number {
         return this.products.length;
     }
+    //Control de errores
     findOne(id: number): Products {
         const product = this.products.find((item: Products) => item.id == id);
         if (product) {
             return product;
         } else {
+            //Si el producto no existe muestra el siguiente error
             throw new NotFoundException(`No encontramos el producto ${id}`);
         }
     }

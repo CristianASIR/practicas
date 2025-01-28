@@ -3,6 +3,7 @@ import { AppService } from 'src/app.service';
 import { ProductsService } from './products.service';
 import { read } from 'fs';
 import { Products } from './products.interface';
+import { ProductsDto } from './dto/products.dto/products.dto';
 
 @Controller('products')
 export class ProductsController {
@@ -31,13 +32,12 @@ export class ProductsController {
         return this.serviceProduct.findOne(id);
         }
     @Post()
-    createProduct(@Body('articulo') articulo: string,
-        @Body('precio', ParseFloatPipe) precio: number): { status: HttpStatus, msg: string } {
+    createProduct(@Body() articulo:ProductsDto): { status: HttpStatus, msg: string } {
         return this.serviceProduct.insert({
             //Insertar producto y ID por no tener clave primaria en este momento
             id: this.serviceProduct.getAll().length + 1,
-            articulo,
-            precio
+            articulo.articulo,
+            articulo.precio
         });
     }
     @Put(':id')
