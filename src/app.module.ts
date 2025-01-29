@@ -20,7 +20,6 @@ import { PokemonModule } from './pokemon/pokemon.module';
       password: process.env.PASSWORD,
       database: process.env.DATABASE,
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
-
       //Se utiliza la sincronización de los datos cuando estamos en desarrollo
       //Si esta en producción se mantiene desactivada para no provocar conflicto
       synchronize:true
