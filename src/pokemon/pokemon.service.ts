@@ -19,20 +19,36 @@ export class PokemonService {
   }
 
   async findAll(): Promise<Pokemon[]> {
-    console.log('📌 Entidades registradas:', this.pokemonRepository.metadata.tableName);
     return this.pokemonRepository.find();
   }
-  
 
-  findOne(id: number) {
-    return `This action returns a #${id} pokemon`;
+
+  async findOne(id: number): Promise<Pokemon> {
+    const pokemon = await this.pokemonRepository.findOne({ where: { id } })
+    return pokemon;
   }
 
-  update(id: number, updatePokemonDto: UpdatePokemonDto) {
-    return `This action updates a #${id} pokemon`;
+  async update(id: number, updatePokemonDto: CreatePokemonDto) {
+    const pokemon = await this.findOne(id);
+    this.pokemonRepository.merge(pokemon, updatePokemonDto);
+    return this.pokemonRepository.save(pokemon);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} pokemon`;
+  async remove(id: number):Promise<void> {
+    const pokemon = await this.findOne(id);
+    await this.pokemonRepository.remove(pokemon);
+  }
+  async findByTipo(tipo:string):Promise<Pokemon|void>{
+    return await this.pokemonRepository.findOne({where:{tipo}});
+  }
+  async activatePokemon(id:number):Promise<Pokemon>{
+    const pokemon=await this.pokemonRepository.findOne({where:{id}});
+    pokemon.activo=true;
+    return await this.pokemonRepository.save(pokemon);
+  }
+  async deactivatePokemon(id:number):Promise<Pokemon>{
+    const pokemon=await this.pokemonRepository.findOne({where:{id}});
+    pokemon.activo=false;
+    return await this.pokemonRepository.save(pokemon);
   }
 }

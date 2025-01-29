@@ -3,7 +3,7 @@ export class CreatePokemonDto {
     @IsString() @IsNotEmpty()
     nombre: string;
     @IsString() @IsNotEmpty()
-    email: string;
+    tipo: string;
     @IsString() @IsNotEmpty()
     @MinLength(6)
     password: string;
