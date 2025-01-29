@@ -25,7 +25,7 @@ export class PokemonController {
   }
 
   @Put(':id')
-  async update(@Param('id') id: string, @Body() updatePokemonDto: CreatePokemonDto): Promise<pokemon> {
+  async update(@Param('id') id: string, @Body() updatePokemonDto: CreatePokemonDto): Promise<Pokemon> {
     return this.pokemonService.update(+id, updatePokemonDto);
   }
 
