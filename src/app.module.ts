@@ -4,6 +4,7 @@ import { ProductsModule } from './products/products.module';
 import { ClientesModule } from './clientes/clientes.module';
 import { GeneracionesModule } from './generaciones/generaciones.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { PokemonModule } from './pokemon/pokemon.module';
 
 @Module({
   imports: [
@@ -23,7 +24,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       //Se utiliza la sincronización de los datos cuando estamos en desarrollo
       //Si esta en producción se mantiene desactivada para no provocar conflicto
       synchronize:true
-    })
+    }),
+    PokemonModule
   ],
   controllers: [],
   providers: [],

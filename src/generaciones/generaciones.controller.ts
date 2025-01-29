@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Put } from '@nestjs/common';
 import { GeneracionesService } from './generaciones.service';
 import { CreateGeneracioneDto } from './dto/create-generacione.dto';
 import { UpdateGeneracioneDto } from './dto/update-generacione.dto';
@@ -22,7 +22,7 @@ export class GeneracionesController {
     return this.generacionesService.findOne(+id);
   }
 
-  @Patch(':id')
+  @Put(':id')
   update(@Param('id') id: string, @Body() updateGeneracioneDto: UpdateGeneracioneDto) {
     return this.generacionesService.update(+id, updateGeneracioneDto);
   }

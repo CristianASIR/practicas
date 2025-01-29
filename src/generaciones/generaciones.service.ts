@@ -1,11 +1,19 @@
 import { Injectable } from '@nestjs/common';
 import { CreateGeneracioneDto } from './dto/create-generacione.dto';
 import { UpdateGeneracioneDto } from './dto/update-generacione.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Generacione } from './entities/generacione.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class GeneracionesService {
+  //Establecer la unicón con la Base de Datos
+  constructor (@InjectRepository(Generacione)
+  private generacioneRepository:Repository<Generacione>
+){}
   create(createGeneracioneDto: CreateGeneracioneDto) {
-    return 'Crear nueva generación';
+    const generacione=this.generacioneRepository.create(createGeneracioneDto);
+    return this.generacioneRepository.save(generacione);
   }
 
   findAll() {
