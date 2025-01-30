@@ -5,8 +5,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Generacione } from './entities/generacione.entity';
 
 @Module({
+  imports: [ TypeOrmModule.forFeature([Generacione], 'base1') ],
   controllers: [GeneracionesController],
   providers: [GeneracionesService],
-  imports: [TypeOrmModule.forFeature([Generacione])],
 })
 export class GeneracionesModule {}

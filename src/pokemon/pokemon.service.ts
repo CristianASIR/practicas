@@ -9,7 +9,7 @@ import { Repository } from 'typeorm';
 export class PokemonService {
   //Conexión a la base de datos
   constructor(
-    @InjectRepository(Pokemon)
+    @InjectRepository(Pokemon,'base2')
     private pokemonRepository: Repository<Pokemon>
   ) { }
   //Primeras funciones asincronas que utilizamos

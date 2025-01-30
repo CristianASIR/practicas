@@ -8,7 +8,7 @@ import { Repository } from 'typeorm';
 @Injectable()
 export class GeneracionesService {
   //Establecer la unicón con la Base de Datos
-  constructor (@InjectRepository(Generacione)
+  constructor (@InjectRepository(Generacione,'base1')
   private generacioneRepository:Repository<Generacione>
 ){}
   create(createGeneracioneDto: CreateGeneracioneDto) {

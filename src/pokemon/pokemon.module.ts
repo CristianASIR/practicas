@@ -5,7 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Pokemon } from './entities/pokemon.entity';
 
 @Module({
-  imports:[TypeOrmModule.forFeature([Pokemon])],
+  imports:[TypeOrmModule.forFeature([Pokemon],'base2')],
   controllers: [PokemonController],
   providers: [PokemonService],
 })
