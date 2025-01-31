@@ -6,6 +6,7 @@ import { GeneracionesModule } from './generaciones/generaciones.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PokemonModule } from './pokemon/pokemon.module';
 import { BibliotecaModule } from './biblioteca/biblioteca.module';
+import { ApiModule } from './api/api.module';
 
 @Module({
   imports: [ConfigModule.forRoot({isGlobal: true,}),
@@ -39,7 +40,8 @@ import { BibliotecaModule } from './biblioteca/biblioteca.module';
     }),
     PokemonModule,
     GeneracionesModule,
-    BibliotecaModule
+    BibliotecaModule,
+    ApiModule
   ],
   controllers: [],
   providers: [],

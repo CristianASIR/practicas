@@ -7,7 +7,7 @@ export class Pokemon {
         id: number;
         @Column({ type: 'varchar', length: 50 })
         nombre: string;
-        @Column({ unique: true })
+        @Column({ type: 'varchar', length: 15 })
         tipo: string;
         @Column()
         password: string;

@@ -5,7 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Biblioteca } from './entities/biblioteca.entity';
 
 @Module({
-  imports:[TypeOrmModule.forFeature([Biblioteca], 'base1')],
+  imports:[TypeOrmModule.forFeature([Biblioteca], 'base2')],
   controllers: [BibliotecaController],
   providers: [BibliotecaService],
 })

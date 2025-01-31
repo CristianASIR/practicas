@@ -1,34 +1,43 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Put, Query } from '@nestjs/common';
 import { BibliotecaService } from './biblioteca.service';
 import { CreateBibliotecaDto } from './dto/create-biblioteca.dto';
 import { UpdateBibliotecaDto } from './dto/update-biblioteca.dto';
+import { Biblioteca } from './entities/biblioteca.entity';
 
 @Controller('biblioteca')
 export class BibliotecaController {
-  constructor(private readonly bibliotecaService: BibliotecaService) {}
+  constructor(private readonly bibliotecaService: BibliotecaService) { }
 
   @Post()
-  create(@Body() createBibliotecaDto: CreateBibliotecaDto) {
+  async create(@Body() createBibliotecaDto: CreateBibliotecaDto): Promise<Biblioteca> {
     return this.bibliotecaService.create(createBibliotecaDto);
   }
 
   @Get()
-  findAll() {
+  async findAll(): Promise<Biblioteca[]> {
     return this.bibliotecaService.findAll();
+  }
+  @Get('query')
+  async rutaQuery(@Query('editorial') editorial: string):Promise<Biblioteca[]> {
+    return this.bibliotecaService.buscarEditorial(editorial);
+  }
+  @Get('query')
+  async rutaStock(@Query('editorial') stock: number):Promise<Biblioteca[]> {
+    return this.bibliotecaService.buscarStock(stock);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  async findOne(@Param('id') id: string): Promise<Biblioteca> {
     return this.bibliotecaService.findOne(+id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateBibliotecaDto: UpdateBibliotecaDto) {
+  @Put(':id')
+  async update(@Param('id') id: string, @Body() updateBibliotecaDto: UpdateBibliotecaDto): Promise<string> {
     return this.bibliotecaService.update(+id, updateBibliotecaDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  async remove(@Param('id') id: string): Promise<string> {
     return this.bibliotecaService.remove(+id);
   }
 }
