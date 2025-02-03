@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Put, NotFoundException } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Put, NotFoundException, Query } from '@nestjs/common';
 import { PokemonService } from './pokemon.service';
 import { CreatePokemonDto } from './dto/create-pokemon.dto';
 import { UpdatePokemonDto } from './dto/update-pokemon.dto';
@@ -18,7 +18,10 @@ export class PokemonController {
   async findAll(): Promise<Pokemon[]> {
     return this.pokemonService.findAll();
   }
-
+  @Get('query')
+  async rutaQuery(@Query('nombre') nombre:string):Promise<Pokemon[]>{
+    return this.pokemonService.buscaNombre(nombre);
+  }
   @Get(':id')
   async findOne(@Param('id') id: string): Promise<Pokemon> {
     return this.pokemonService.findOne(+id);

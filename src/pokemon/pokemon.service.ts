@@ -51,4 +51,7 @@ export class PokemonService {
     pokemon.activo=false;
     return await this.pokemonRepository.save(pokemon);
   }
+  async buscaNombre(nombre:string):Promise<Pokemon[]>{
+    return this.pokemonRepository.find({where:{nombre}})
+  }
 }
